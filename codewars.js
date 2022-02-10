@@ -33,8 +33,10 @@ console.log(
 
 function sumTwoSmallestNumbers(numbers) {
   //Code here
+  // сортировка по возрастанию
   const ascArr = numbers.sort((a, b) => a - b);
   const positiveNumbersArr = ascArr.filter((el) => el > 0);
+  // деструктуризацтя первых друх элементов массива
   const [a, b] = positiveNumbersArr;
   // const [a, b] = ascArr.filter((el) => el > 0);
   return a + b;
@@ -57,3 +59,46 @@ console.log("====>", sumTwoSmallestNumbers([12, -2, -9, 1, 4, 89]));
 function XO(str) {
   //code here
 }
+
+// Вам дан массив (который будет иметь длину не менее 3, но может быть очень большим),
+// содержащий целые числа. Массив либо полностью состоит из нечетных целых чисел,
+// либо полностью состоит из четных целых чисел, за исключением одного целого числа N.
+// Напишите метод, который принимает массив в качестве аргумента и
+// возвращает этот «выброс» N.
+
+// [2, 4, 0, 100, 4, 11, 2602, 36]
+// Should return: 11 (the only odd number)
+
+// [160, 3, 1719, 19, 11, 13, -21]
+// Should return: 160 (the only even number)
+
+function findOutlier(integers) {
+  //your code here
+  const [a, b, c] = integers;
+  const testArr = [a, b, c];
+  let testNumber = 0;
+  testArr.forEach((el) => {
+    if (el % 2 == 0) {
+      testNumber++;
+    } else {
+      testNumber--;
+    }
+  });
+
+  console.log("testArr=", testArr);
+  console.log("testNumber=", testNumber);
+  const chechCondition = testNumber > 0 ? true : false;
+
+  number = integers.find((el) => {
+    // return el % 2 == 0; // != 0
+    if (chechCondition) {
+      return el % 2 != 0;
+    } else {
+      return el % 2 == 0;
+    }
+  });
+
+  return number;
+}
+
+console.log("===>", findOutlier([2, 4, 0, 100, 4, 11, 2602, 36]));
