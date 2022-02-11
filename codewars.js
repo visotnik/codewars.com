@@ -181,6 +181,9 @@ console.log(
 // =================================================================================
 // Просто, учитывая строку слов, вернуть длину кратчайшего слова (слов).
 // Строка никогда не будет пустой, и вам не нужно учитывать разные типы данных.
+// https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9/solutions/javascript
+
+// можно отсортировать массив по длине слов по возрастанию и вернуть arr[0]
 
 function findShort(s) {
   let sArr = s.split(/\s/);
@@ -188,10 +191,32 @@ function findShort(s) {
   sArr.forEach((el) => {
     if (el.length < wordLength) {
       wordLength = el.length;
-      console.log("el.length=", word);
+      console.log("el.length=", wordLength);
     }
   });
   return wordLength;
 }
 
 console.log("===> findShort(s) =", findShort("Let's travel abroad shall we"));
+
+// =================================================================================
+// https://www.codewars.com/kata/541c8630095125aba6000c00
+// Учитывая n, возьмите сумму цифр n. Если это значение имеет более одной цифры,
+// продолжайте уменьшать таким образом, пока не будет получено однозначное число.
+// Ввод будет неотрицательным целым числом.
+
+function digital_root(n) {
+  let sum1 = 20;
+  let arr = n.toString().split("");
+  console.log("arr=", arr);
+  while (sum1 / 10 >= 1) {
+    sum1 = arr.reduce((sum, el) => {
+      return sum + Number(el);
+    }, 0);
+    arr = sum1.toString().split("");
+    console.log("arr=", arr);
+  }
+  return sum1;
+}
+
+console.log("===> digital_root(n) =", digital_root(97669));
