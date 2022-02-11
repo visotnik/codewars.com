@@ -102,3 +102,40 @@ function findOutlier(integers) {
 }
 
 console.log("===>", findOutlier([2, 4, 0, 100, 4, 11, 2602, 36]));
+
+// =================================================================================
+// Создайте программу, которая фильтрует список строк и возвращает список, содержащий
+// только имена ваших друзей. Если в имени ровно 4 буквы, можете быть уверены,
+// что оно должно быть вашим другом! В противном случае, вы можете быть уверены,
+// что он не друг
+// Ex: Input = ["Ryan", "Kieran", "Jason", "Yous"], Output = ["Ryan", "Yous"]
+
+function friend(friends) {
+  //your code here
+  const friendsArr = friends.filter((el) => {
+    return el.length == 4;
+  });
+
+  return friendsArr;
+}
+console.log("===> friends >", friend(["Ryan", "Kieran", "Jason", "Yous"]));
+
+// =================================================================================
+// Завершите findNextSquareметод, который находит следующий целочисленный идеальный квадрат
+// после квадрата, переданного в качестве параметра.
+// Напомним, что целочисленный совершенный квадрат — это целое число n,
+// такое что sqrt(n) также является целым числом.
+// Если параметр сам по себе не является идеальным квадратом -1, его следует вернуть.
+// Вы можете предположить, что параметр неотрицательный.
+// Math.sqrt(9)
+function findNextSquare(sq) {
+  if (Number.isInteger(Math.sqrt(sq))) {
+    // Return the next square if sq is a perfect square, -1 otherwise
+    const number = Math.sqrt(sq);
+    return (number + 1) * (number + 1);
+  } else {
+    return -1;
+  }
+}
+
+console.log("===> findNextSquare >", findNextSquare(255));
