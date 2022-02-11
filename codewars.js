@@ -223,22 +223,57 @@ console.log("===> digital_root(n) =", digital_root(97669));
 
 // =================================================================================
 // Implement the function unique_in_order which takes as argument a sequence and returns
+// https://www.codewars.com/kata/54e6533c92449cc251001667/solutions/javascript
 // a list of items without any elements with the same value next to each other and
 // preserving the original order of elements.
 // uniqueInOrder('AAAABBBCCDAABBB') == ['A', 'B', 'C', 'D', 'A', 'B']
+// s = 'AAAABBBCCDAABBB'
+// s = 'AAAABBBCCDAABBB1254888744'
+// s = ['AA', 'A', '', '','B','B','C','c','b', '', 'None',5,5,'5']
+// s = ['i', 't', 'e', 'r', 'a', 'b', 'l', 'e']
+// s = ['A', 'B', 'C', 'D', 'A', 'A', 'D']
+// s = ['A', 'A', None, None, None]
+// s = ['5', 5]
 
 var uniqueInOrder = function (iterable) {
   //your code here - remember iterable can be a string or an array
-  const arrFromIterable = iterable.split("");
-  // убираем все дубликаты (получим:  'A', 'B', 'C', 'D') - нам не подходит
-  // const unicIterable = new Set(arrFromIterable);
-  // регулярное выражение regExp для одинаковых символов подряд
-  // решается в одно регулярное выражение только с помощью обратных ссылок
-  // https://learn.javascript.ru/regexp-backreferences
-  // https://heap.imagetube.xyz/1/%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BA%D0%BE%D0%B2%D1%8B%D1%85-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE%D0%B4%D1%80%D1%8F%D0%B4
-  const arrRegExp = iterable.match(/(.)\1+|./g);
+  let resultArr = [];
 
-  return arrRegExp; // arrFromIterable;
+  if (typeof iterable === "string") {
+    if (!iterable[0]) return resultArr;
+    const arrFromIterable = iterable.split("");
+    // убираем все дубликаты (получим:  'A', 'B', 'C', 'D') - нам не подходит
+    // const unicIterable = new Set(arrFromIterable);
+    // регулярное выражение regExp для одинаковых символов подряд
+    // решается в одно регулярное выражение только с помощью обратных ссылок
+    // https://learn.javascript.ru/regexp-backreferences
+    // https://heap.imagetube.xyz/1/%D0%BF%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5-%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%BE%D0%B5-%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B4%D0%BB%D1%8F-%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BA%D0%BE%D0%B2%D1%8B%D1%85-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D0%BE%D0%B2-%D0%BF%D0%BE%D0%B4%D1%80%D1%8F%D0%B4
+    const arrRegExp = iterable.match(/(.)\1+|./g);
+    resultArr = arrRegExp.map((el) => {
+      return el[0];
+    });
+  } else if (typeof iterable === "object") {
+    if (!iterable[0]) return resultArr;
+    const stringFromArr = iterable.join("");
+    console.log("stringFromArr =", stringFromArr);
+    const arrRegExp = stringFromArr.match(/(.)\1+|./g);
+    resultArr = arrRegExp.map((el) => {
+      return el[0] === "1" ||
+        el[0] === "2" ||
+        el[0] === "3" ||
+        el[0] === "4" ||
+        el[0] === "5" ||
+        el[0] === "6" ||
+        el[0] === "7" ||
+        el[0] === "8" ||
+        el[0] === "9" ||
+        el[0] === "0"
+        ? Number(el[0])
+        : el[0];
+    });
+  }
+
+  return resultArr; // typeof iterable; // resultArr;
 };
 
-console.log("===> unique_in_order =", uniqueInOrder("AAAABBBCCDAABBB"));
+console.log("===> unique_in_order =", uniqueInOrder("")); // AAAABBBCCDAABBB ["AAAA", "BBB", "CC", "D", "AA", "BBB"]
