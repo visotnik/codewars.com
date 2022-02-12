@@ -241,7 +241,7 @@ var uniqueInOrder = function (iterable) {
 
   if (typeof iterable === "string") {
     if (!iterable[0]) return resultArr;
-    const arrFromIterable = iterable.split("");
+    const arrFromIterable = iterable.split(""); // [...iterable]
     // убираем все дубликаты (получим:  'A', 'B', 'C', 'D') - нам не подходит
     // const unicIterable = new Set(arrFromIterable);
     // регулярное выражение regExp для одинаковых символов подряд
@@ -273,7 +273,46 @@ var uniqueInOrder = function (iterable) {
     });
   }
 
-  return resultArr; // typeof iterable; // resultArr;
+  return resultArr; // typeof iterable; // resultArr; // [...iterable]
 };
 
-console.log("===> unique_in_order =", uniqueInOrder("")); // AAAABBBCCDAABBB ["AAAA", "BBB", "CC", "D", "AA", "BBB"]
+console.log("===> unique_in_order =", uniqueInOrder("123")); // AAAABBBCCDAABBB ["AAAA", "BBB", "CC", "D", "AA", "BBB"]
+
+// =================================================================================
+// Есть массив с некоторыми числами. Все числа равны, кроме одного. Попробуйте найти!
+// Массив содержит не менее 3 чисел.
+// Тесты содержат очень большие массивы, так что подумайте о производительности.
+// findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
+// findUniq([ 0, 0, 0.55, 0, 0 ]) === 0.55
+
+// Решение через сортировку
+// function findUniq(arr) {
+//   arr.sort((a,b)=>a-b);
+//   return arr[0]==arr[1]?arr.pop():arr[0]
+// }
+
+// https://www.codewars.com/kata/585d7d5adb20cf33cb000235/solutions/javascript
+
+// Мое решение
+function findUniq(arr) {
+  // do magic
+  let numbers = [];
+  numbers.push(arr[0]);
+  for (var i = 1; i < 3; i++) {
+    if (arr[i] === numbers[0]) {
+      numbers.push(arr[i]);
+    }
+  }
+  if (numbers.length === 1) {
+    return numbers[0]; // unicalNumber
+  } else {
+    return arr.find((el) => {
+      return el !== numbers[0];
+    });
+  }
+}
+
+console.log(
+  "====> arr =",
+  findUniq([1, 1, 1, 1, 1, 1, 1, 1, -0.5, 1, 1, 1, 1, 1, 1])
+);
