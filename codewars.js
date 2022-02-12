@@ -316,3 +316,36 @@ console.log(
   "====> arr =",
   findUniq([1, 1, 1, 1, 1, 1, 1, 1, -0.5, 1, 1, 1, 1, 1, 1])
 );
+
+// =================================================================================
+// https://www.codewars.com/kata/5208f99aee097e6552000148/solutions/javascript
+// Завершите решение, чтобы функция разбивала camel casing style,
+// используя пробелы между словами.
+// "camelCasing"  =>  "camel Casing"
+// "identifier"   =>  "identifier"
+// "myStringTest" =>  "my String Test"
+// ""             =>  ""
+
+// complete the function
+// complete the function
+function solution(string) {
+  const stringArr = [...string];
+  // const char = stringArr.find((el) => {
+  //   return el === el.toUpperCase();
+  // });
+  // const index = stringArr.findIndex((el) => el === el.toUpperCase());
+  // stringArr.splice(index, 0, " ");
+
+  const arrResult = stringArr.map((el) => {
+    if (el === el.toUpperCase()) {
+      return ` ${el}`;
+    } else {
+      return el;
+    }
+  });
+  // stringArr.splice(index, 0, " ");
+
+  return arrResult.join(""); // index; // stringArr.join("");
+}
+
+console.log("====> Camel Case =", solution("myFavoriteString"));
