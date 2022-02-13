@@ -84,6 +84,15 @@ console.log("===>", five(dividedBy(zero())));
 // spinWords( "This is a test") => returns "This is a test"
 // spinWords( "This is another test" )=> returns "This is rehtona test"
 
+// function spinWords(words) {
+//   return words
+//     .split(" ")
+//     .map(function (word) {
+//       return word.length > 4 ? word.split("").reverse().join("") : word;
+//     })
+//     .join(" ");
+// }
+
 function spinWords(string) {
   //TODO Have fun :)
   const wordsArr = string.split(" ");
